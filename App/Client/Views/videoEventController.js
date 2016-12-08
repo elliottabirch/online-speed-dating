@@ -23,10 +23,11 @@ import Vue from 'vue';
 
 
 //prepare the user to make calls/take part in an event
-  //either immediately on page load or on a button press of some kind
+  //either immediately on page load or on a button press of some kind--possibly on joinEvent
 userPhone = new PHONE(loggedInUsername);
+//*****this is v-if='beforeEvent 
   //possibly add to a stored 'ready for event' list to account for no shows
-
+  
 //get event data and create lists of callers/callees
   //find all the users for an event
   //other processing might be needed to get them into an array
@@ -61,15 +62,16 @@ eventBegin = function() {
       //'ready to call' button to appear--in this case a "call" would already have needed to happen, just with video/audio shut down
       //the 'ready to call' button of the caller would simply turn on video and audio for the call rather than actually dialling
 };
-
+//*****this is v-if=activeEvent
 //if the user is a caller
+  //****this is v-if=isCaller
 var showVideo = false;
 var totalCalls = 1;
 var currentIndex = currentUserStartIndex;
   //run through the necessary calls for the event
     //on 'ready to talk' button press
 userPhone.dial(eventCalleeList[currentIndex]);
-showVideo = true; //this flag should toggle on video display elements and toggle off the button for making calls, alternatively, could possible be handled as a 'transition'
+showVideo = true; //****this puts us in v-if=inCall mode
 setTimeout(function() {
   userPhone.hangup();
   totalCalls++;
@@ -78,8 +80,8 @@ setTimeout(function() {
   } else {
     currentIndex++;
   }
-  showVideo = false; //toggles video off and buttons back on, again, could possibly be handled by a 'transition'
-  
+  showVideo = false; //****this puts us back into v-if=outOfCall mode
+
 }, eventCallDuration);
     //check number of calls
 if (totalCalls === eventCalleeList.lenght) {
