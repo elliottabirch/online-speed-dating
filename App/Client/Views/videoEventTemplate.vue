@@ -5,14 +5,14 @@
     </template>
     <template v-if='activeEvent'>
       <transition name='relocate'>
-        <div v-if='outOfCall' key='outOfCall' v-html='myVideo'></div>
+        <div v-if='wait' key='outOfCall' v-html='myVideo'></div>
         <div v-else key='inCall' v-html='myVideo'></div>
       </transition>
-      <template v-if='outOfCall'>
+      <template v-if='wait'>
         <button v-if='isCaller' v-on:click.prevent='eventCall'>Your Date Awaits!</button>
         <div v-else>Please be patient while your date works up the courage to call</div> 
       </template>
-      <template v-if='inCall'>
+      <template v-if='active'>
         <div v-html='videoOut'></div>
       </template>    
     </template>
