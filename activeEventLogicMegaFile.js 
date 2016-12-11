@@ -1,0 +1,18 @@
+//event model logic--use to process event data on request from a user
+
+  //get the event
+  //get all users for the event
+    //sort the users using the function/parameters on the event--if no function is provided, use a default
+    //find which array user is in, if it's the caller or callee array, and their index in it
+      //create a new array which will be the list of calls the user will have
+        //at the 0 index of this new array store a piece of information--either boolean or a string "caller" or "callee"
+        //add the members of the group the user is not in to this array starting from the index matching the user's index
+          //this should produce a list of the users this user will connect with in the order they will connect
+          //example: this user is at index = 5 of the caller group, so his call list looks like:
+          // ['caller', callee5, callee6, callee7, callee8, callee0, callee1, callee2, callee3, callee4]
+        //store this array on the "calllists" property of the user, this will hold an object {eventname: callArray, eventName: callArray .....}
+        //send this array back to the client
+
+//client logic -- what is happening on the client
+
+//server logic is already in the activeEventHandlerFile
